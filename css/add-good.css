@@ -7,6 +7,10 @@
   background-color: var(--bkg-color);
 }
 
+.add-good_show {
+  display: flex;
+}
+
 .add-good__title {
   font-style: normal;
   font-weight: 700;
