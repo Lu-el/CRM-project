@@ -1,0 +1,85 @@
+.table {
+  min-width: 1100px;
+  border-collapse: collapse;
+}
+
+.table__row {
+  border-top: #D9D5EC 1px solid;
+}
+
+.table__thead {
+  height: 45px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: #F4F2FF;
+  border: 0;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.table__head,
+.table__cell {
+  padding: 0 0 0 15px;
+}
+
+.table__head:first-child,
+.table__cell:first-child {
+  width: 78px;
+}
+
+.table__cell {
+  height: 60px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #25213B;
+}
+
+.table__cell:last-child {
+  padding-right: 15px;
+}
+
+.table__head_position_center,
+.table__cell_position_center {
+  text-align: center;
+}
+
+.table__head_position_right,
+.table__cell_position_right {
+  text-align: end;
+}
+
+.table__btn {
+  margin-right: 16px;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+}
+
+.table__btn:last-child {
+  margin-right: 0;
+}
+
+.table__btn_img {
+  background-image: url('../image/table/img_here.svg');
+}
+
+.table__btn_img_absent {
+  background-image: url('../image/table/no-image.svg');
+}
+
+.table__btn_change {
+  background-image: url('../image/table/change.svg');
+}
+
+.table__btn_delete {
+  background-image: url('../image/table/delete.svg');
+}
