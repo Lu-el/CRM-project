@@ -1,5 +1,10 @@
 .field_position_horizontal {
   display: flex;
+  flex-direction: column;
+}
+
+.field__wrapper {
+  display: flex;
 }
 
 .field__label {

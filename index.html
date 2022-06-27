@@ -17,13 +17,13 @@
 <body>
   <section class="add-good add-good_show">
     <div class="container">
-      <div class="add-good__caption visually-hidden">
+      <div class="add-good__caption">
         <h1 class="add-good__title">
           Добавить ТОВАР
         </h1>
       </div>
 
-      <div class="add-good__caption">
+      <div class="add-good__caption visually-hidden">
         <div class="add-good__changing">
           <h1 class="add-good__title">
             Изменить ТОВАР
@@ -85,11 +85,13 @@
             <input class="field__input" type="number" name="count" id="count">
           </div>
 
-          <fieldset class="form__field field field_position_horizontal">
-            <legend class="field__label">Дисконт</legend>
-            <input type="checkbox" class="field__checkbox">
-            <input class="field__input" type="text" name="discount" disabled>
-          </fieldset>
+          <div class="form__field field field_position_horizontal">
+            <label class="field__label" for="discount">Дисконт</label>
+            <div class="field__wrapper">
+              <input type="checkbox" class="field__checkbox">
+              <input class="field__input" type="text" id="discount" name="discount" disabled>
+            </div>
+          </div>
 
           <div class="form__field field">
             <label class="field__label" for="price">Цена</label>
@@ -498,8 +500,8 @@
           <p class="table-foot__text">
             1-10 of 276
           </p>
-            <button class="table-foot__btn table-foot__btn_right" aria-label="Назад по списку"></button>
-            <button class="table-foot__btn table-foot__btn_left" aria-label="Вперед по списку"></button>
+          <button class="table-foot__btn table-foot__btn_right" aria-label="Назад по списку"></button>
+          <button class="table-foot__btn table-foot__btn_left" aria-label="Вперед по списку"></button>
         </div>
       </div>
     </div>
