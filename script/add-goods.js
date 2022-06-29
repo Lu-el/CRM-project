@@ -11,9 +11,9 @@ const checkboxfieldset = fieldCheckbox.closest('.form__field');
 const discount = checkboxfieldset.querySelector('.field__input');
 const totalPrice = addGoods.querySelector('.price__number');
 
-console.log(title);
-console.log(btnChangeGood);
-console.log(goodId);
-console.log(addGoodForm);
-console.log(discount);
-console.log(totalPrice);
+// console.log(title);
+// console.log(btnChangeGood);
+// console.log(goodId);
+// console.log(addGoodForm);
+// console.log(discount);
+// console.log(totalPrice);
