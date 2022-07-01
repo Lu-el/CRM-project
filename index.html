@@ -11,7 +11,14 @@
   <link rel="preload" href="./fonts/Inter-SemiBold.woff" as="font" type="font/woff" crossorigin>
   <title>Добавить ТОВАР</title>
   <link rel="stylesheet" href="./css/style.css">
+<<<<<<< HEAD
   <script src="script/createRow.js" defer></script>
+||||||| c9599d9
+  <script src="script/add-goods.js" defer></script>
+=======
+  <script src="script/add-goods.js" defer></script>
+  <script src="script/modal.js" defer></script>
+>>>>>>> modul_05-05
 </head>
 
 <body>
@@ -22,6 +29,8 @@
           Добавить ТОВАР
         </h1>
       </div>
+
+
 
       <div class="add-good__caption visually-hidden">
         <div class="add-good__changing">
@@ -98,8 +107,8 @@
             <input class="field__input" type="number" name="price" id="price">
           </div>
 
-          <div class="form__field form__field_row_last field">
-            <div class="field__error">
+          <div class="form__field form__field_row_last field ">
+            <div class="field__error visually-hidden">
               Изображение не должно
               превышать размер 1 Мб
             </div>
@@ -110,7 +119,7 @@
             <input class="field__input visually-hidden" type="file" name="image" id="file" accept=".jpg, .jpeg, .png">
           </div>
 
-          <div class="field form__img">
+          <div class="field form__img visually-hidden">
             <img src="./image/product_img.jpg" alt="Фото товара кофеварка" class="field__img">
           </div>
 
@@ -160,7 +169,7 @@
             Фильтр
           </button>
           <input type="search" class="page__input" placeholder="Поиск по наименованию и категории">
-          <button class="page__btn">
+          <button class="page__btn-add">
             Добавить товар
           </button>
         </div>
