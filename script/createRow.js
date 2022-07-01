@@ -1,10 +1,6 @@
 'use strict';
 
-const createRow = (product) =>
-  // const values = Object.values(product);
-  // const newRow = values.map(elem => `<td class='table__cell'>${elem}</td>`);
-  // return `<tr class='table__row'>${newRow.join(' ')}</tr>`;
-
+const createRow = product =>
   `<tr class='table__row'>
   <td class='table__cell'>
     ${product.id}
@@ -44,7 +40,6 @@ const createRow = (product) =>
 
 const renderGoods = (arr) => {
   const goodsList = arr.map(elem => createRow(elem));
-  console.log(goodsList);
   return goodsList.join('');
 };
 
@@ -58,10 +53,6 @@ const data = [
     'discont': false,
     'count': 3,
     'units': 'шт',
-    // 'images': {
-    //   'small': 'img/smrtxiaomi11t-m.jpg',
-    //   'big': 'img/smrtxiaomi11t-b.jpg',
-    // },
   },
   {
     'id': 296378448,
