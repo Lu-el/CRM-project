@@ -1,48 +1,6 @@
 'use strict';
 
-const createRow = product =>
-  `<tr class='table__row' data-id='${product.id}'>
-  <td class='table__cell'>
-    ${product.id}
-  </td>
-  <td class='table__cell'>
-    ${product.title}
-  </td>
-  <td class='table__cell'>
-    ${product.category}
-  </td>
-  <td class='table__cell table__cell_position_center'>
-    ${product.units}
-  </td>
-  <td class='table__cell table__cell_position_center'>
-    ${product.count}
-  </td>
-  <td class='table__cell table__cell_position_right'>
-    $${product.price}
-  </td>
-  <td class='table__cell table__cell_position_right'>
-    $${product.price * product.count}
-  </td>
-  <td class='table__cell table__cell_position_right'>
-  ${product.images?.big || product.images?.small ?
-      `<button class='table__btn table__btn_img'
-        aria-label='Есть изображение'></button>` :
-      `<button class='table__btn table__btn_img_absent'
-        aria-label='Нет изображения'></button>`
-}
-    <button class='table__btn table__btn_change'
-        aria-label='Изменить карточку товара'></button>
-    <button class='table__btn table__btn_delete'
-        aria-label='Удалить карточку товара'></button>
-  </td>
-</tr>`;
-
-
-const renderGoods = (arr) => {
-  const goodsList = arr.map(elem => createRow(elem));
-  return goodsList.join('');
-};
-
+const page = document.querySelector('.page');
 const data = [
   {
     'id': 253842678,
@@ -115,8 +73,107 @@ const data = [
   },
 ];
 
+const addProdactData = (newProduct) => {
+  data.push(newProduct);
+  console.log(data);
+};
+
+const createRow = product =>
+  `<tr class='table__row' data-id='${product.id}'>
+  <td class='table__cell'>
+    ${product.id}
+  </td>
+  <td class='table__cell'>
+    ${product.title}
+  </td>
+  <td class='table__cell'>
+    ${product.category}
+  </td>
+  <td class='table__cell table__cell_position_center'>
+    ${product.units}
+  </td>
+  <td class='table__cell table__cell_position_center'>
+    ${product.count}
+  </td>
+  <td class='table__cell table__cell_position_right'>
+    $${product.price}
+  </td>
+  <td class='table__cell table__cell_position_right'>
+    $${product.price * product.count}
+  </td>
+  <td class='table__cell table__cell_position_right'>
+  ${product.images?.big || product.images?.small ?
+      `<button class='table__btn table__btn_img'
+        aria-label='Есть изображение'></button>` :
+      `<button class='table__btn table__btn_img_absent'
+        aria-label='Нет изображения'></button>`
+}
+    <button class='table__btn table__btn_change'
+        aria-label='Изменить карточку товара'></button>
+    <button class='table__btn table__btn_delete'
+        aria-label='Удалить карточку товара'></button>
+  </td>
+</tr>`;
+
+const totalPriceTable = (data, page) => {
+  const totalPriceAll = page.querySelector('.price__number');
+  let total = 0;
+  for (const name of data) {
+    total += name.price * name.count;
+  }
+  totalPriceAll.innerHTML = `$&nbsp;${total}`;
+};
+
+const renderGoods = (arr) => {
+  const goodsList = arr.map(elem => createRow(elem));
+  totalPriceTable(data, page);
+  return goodsList.join('');
+};
+
 const tbody = document.querySelector('.table__body');
 tbody.innerHTML = renderGoods(data);
+const addProductButton = document.querySelector('.page__btn-add');
+const addGood = document.querySelector('.add-good');
+const fieldCheckbox = addGood.querySelector('.field__checkbox');
+
+
+const modalControl = (addGood, addProductButton, fieldCheckbox) => {
+  const closeModal = () => {
+    addGood.classList.remove('add-good_show');
+  };
+
+  const openModal = () => {
+    addGood.classList.add('add-good_show');
+  };
+
+  addProductButton.addEventListener('click', () => {
+    openModal();
+  });
+
+  addGood.addEventListener('click', e => {
+    const target = e.target;
+    if (!(target.closest('.add-good__form'))) {
+      closeModal();
+    }
+  });
+
+  fieldCheckbox.addEventListener('change', () => {
+    const input = fieldCheckbox.nextElementSibling;
+    if (fieldCheckbox.checked) {
+      input.disabled = false;
+      input.focus();
+    } else {
+      input.disabled = true;
+      input.value = '';
+    }
+  });
+
+  return {
+    closeModal,
+  };
+};
+
+modalControl(addGood, addProductButton, fieldCheckbox);
 
 tbody.addEventListener('click', e => {
   const target = e.target;
@@ -127,8 +184,42 @@ tbody.addEventListener('click', e => {
       if (+elem.id === +row.dataset.id) {
         row.remove();
         data.splice(index, 1);
+        totalPriceTable(data, page);
       }
     });
     console.log(data);
   }
 });
+
+const addProdactForm = document.querySelector('.add-good__form');
+const totalCost = addProdactForm.querySelector('.price__number');
+const {closeModal} = modalControl(addGood, addProductButton, fieldCheckbox);
+
+addProdactForm.addEventListener('focusout', (e) => {
+  if (e.target.closest('.field__input')) {
+    totalCost.innerHTML =
+      `$&nbsp;${addProdactForm.price.value * addProdactForm.count.value}`;
+  }
+});
+
+const addProdactPage = (newProduct, tablebody) => {
+  tablebody.innerHTML += createRow(newProduct);
+};
+
+const formControl = (form, tablebody, closeModal) => {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const newProduct = Object.fromEntries(formData);
+    newProduct.id = prompt('введите id');
+    addProdactPage(newProduct, tablebody);
+    addProdactData(newProduct);
+    form.reset();
+    closeModal();
+    totalPriceTable(data, page);
+  });
+};
+
+formControl(addProdactForm, tbody, closeModal);

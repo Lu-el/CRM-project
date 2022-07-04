@@ -11,8 +11,6 @@
   <link rel="preload" href="./fonts/Inter-SemiBold.woff" as="font" type="font/woff" crossorigin>
   <title>Добавить ТОВАР</title>
   <link rel="stylesheet" href="./css/style.css">
-  <script src="script/add-goods.js" defer></script>
-  <script src="script/modal.js" defer></script>
   <script src="script/tableControl.js" defer></script>
 </head>
 
@@ -24,8 +22,6 @@
           Добавить ТОВАР
         </h1>
       </div>
-
-
 
       <div class="add-good__caption visually-hidden">
         <div class="add-good__changing">
@@ -66,27 +62,27 @@
         <fieldset class="form__card">
           <div class="form__field field">
             <label for="name-good" class="field__label">Наименование</label>
-            <input class="field__input" type="text" name="name" id="name-good">
+            <input class="field__input" type="text" name="title" id="name-good" required>
           </div>
 
           <div class="form__field form__field_row_double field">
             <label class="field__label" for="description">Описание</label>
-            <textarea class="field__input field__input_hieght_xl" name="description" id="description"></textarea>
+            <textarea class="field__input field__input_hieght_xl" name="description" id="description" required></textarea>
           </div>
 
           <div class="form__field field">
             <label class="field__label" for="category">Категория</label>
-            <input class="field__input" type="text" name="category" id="category">
+            <input class="field__input" type="text" name="category" id="category" required>
           </div>
 
           <div class="form__field field">
             <label class="field__label" for="unit">Единицы измерения</label>
-            <input class="field__input" type="text" name="unit" id="unit">
+            <input class="field__input" type="text" name="units" id="unit" required>
           </div>
 
           <div class="form__field field">
             <label class="field__label" for="count">Количество</label>
-            <input class="field__input" type="number" name="count" id="count">
+            <input class="field__input" type="number" name="count" id="count" required>
           </div>
 
           <div class="form__field field field_position_horizontal">
@@ -99,7 +95,7 @@
 
           <div class="form__field field">
             <label class="field__label" for="price">Цена</label>
-            <input class="field__input" type="number" name="price" id="price">
+            <input class="field__input" type="number" name="price" id="price" required>
           </div>
 
           <div class="form__field form__field_row_last field ">
@@ -111,7 +107,7 @@
 
           <div class="form__field form__field_row_last field">
             <label class="field__btn" for="file">Добавить изображение</label>
-            <input class="field__input visually-hidden" type="file" name="image" id="file" accept=".jpg, .jpeg, .png">
+            <input class="field__input visually-hidden" type="file" name="images" id="file" accept=".jpg, .jpeg, .png">
           </div>
 
           <div class="field form__img visually-hidden">
@@ -136,7 +132,7 @@
 
         <div class="form__wrapper-btn">
           <p class="price">
-            Итоговая стоимость: <span class="price__number">$&nbsp;900.00</span>
+            Итоговая стоимость: <span class="price__number price__number_form">$&nbsp;0</span>
           </p>
           <button type="submit" class="form__send-btn">Добавить товар</button>
         </div>
