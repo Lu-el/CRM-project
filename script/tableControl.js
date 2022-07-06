@@ -135,7 +135,30 @@ tbody.innerHTML = renderGoods(data);
 const addProductButton = document.querySelector('.page__btn-add');
 const addGood = document.querySelector('.add-good');
 const fieldCheckbox = addGood.querySelector('.field__checkbox');
+const addProdactForm = document.querySelector('.add-good__form');
+const totalCost = addProdactForm.querySelector('.price__number');
+const idNewProduct = addGood.querySelector('.add-good__number');
+const btnChangeId = addGood.querySelector('.add-good__pencil');
 
+const getIdNumber = () => {
+  const id = new Date().getTime();
+  return id.toString().slice(0, 9);
+};
+
+getIdNumber();
+
+btnChangeId.addEventListener('click', (e) => {
+  const id = +prompt('Введите новый id');
+  if (!(Number.isNaN(id)) &&
+    id.toString().length <= 9 &&
+      !(id === 0)) {
+    idNewProduct.innerHTML = id.toString().padStart(9, 0);
+    return;
+  } else {
+    alert('Должны быть цифры, id не может превышать 9 знаков');
+    return;
+  }
+});
 
 const modalControl = (addGood, addProductButton, fieldCheckbox) => {
   const closeModal = () => {
@@ -144,17 +167,22 @@ const modalControl = (addGood, addProductButton, fieldCheckbox) => {
 
   const openModal = () => {
     addGood.classList.add('add-good_show');
+    idNewProduct.innerHTML = getIdNumber();
   };
 
   addProductButton.addEventListener('click', () => {
     openModal();
+    totalCost.innerHTML = `$&nbsp;0`;
   });
 
   addGood.addEventListener('click', e => {
     const target = e.target;
-    if (!(target.closest('.add-good__form'))) {
-      closeModal();
+    if (target.closest('.add-good__form') ||
+      target.closest('.add-good__caption')) {
+      return;
     }
+    document.querySelector('.add-good__form').reset();
+    closeModal();
   });
 
   fieldCheckbox.addEventListener('change', () => {
@@ -191,8 +219,6 @@ tbody.addEventListener('click', e => {
   }
 });
 
-const addProdactForm = document.querySelector('.add-good__form');
-const totalCost = addProdactForm.querySelector('.price__number');
 const {closeModal} = modalControl(addGood, addProductButton, fieldCheckbox);
 
 addProdactForm.addEventListener('focusout', (e) => {
@@ -213,7 +239,7 @@ const formControl = (form, tablebody, closeModal) => {
     const formData = new FormData(e.target);
 
     const newProduct = Object.fromEntries(formData);
-    newProduct.id = prompt('введите id');
+    newProduct.id = idNewProduct.innerHTML;
     addProdactPage(newProduct, tablebody);
     addProdactData(newProduct);
     form.reset();

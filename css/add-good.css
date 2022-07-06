@@ -29,7 +29,7 @@
   border-bottom: var(--alt-color) 1px solid;
 }
 
-.add-good__changing {
+.add-good__flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,6 +64,10 @@
 }
 
 @media (max-width:768px) {
+  .add-good {
+    padding-top: 56px;
+  }
+
   .add-good__changing {
     justify-content: left;
     gap: 50px;
