@@ -84,7 +84,7 @@ const data = [
 
 const init = (data) => {
   const {
-    page,
+    totalPriceAll,
     tbody,
     addProductButton,
     addGood,
@@ -96,10 +96,11 @@ const init = (data) => {
   const {closeModal} = modalControl(addGood, addProductButton);
   tbody.innerHTML = renderGoods(data);
 
-  totalPriceTable(data, page);
-  formControl(addProdactForm, tbody, page, idNewProduct, data, closeModal);
+  totalPriceTable(data, totalPriceAll);
+  // eslint-disable-next-line max-len
+  formControl(addProdactForm, tbody, totalPriceAll, idNewProduct, data, closeModal);
   modalControl(addGood, addProductButton);
-  deleteRow(page, tbody, data);
+  deleteRow(totalPriceAll, tbody, data);
   changeTotalCost(addProdactForm, totalCost);
 };
 

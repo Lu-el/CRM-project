@@ -1,5 +1,5 @@
 export const createRow = product =>
-  `<tr class='table__row' data-id='${product.id}'>
+  `<tr class='table__row' data-id='${product.id}>
   <td class='table__cell'>
     ${product.id}
   </td>

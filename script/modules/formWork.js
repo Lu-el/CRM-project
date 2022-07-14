@@ -6,7 +6,7 @@ const {
 } = tableControl;
 
 export const formControl =
-  (form, tablebody, page, idNewProduct, data, closeModal) => {
+  (form, tablebody, totalPriceAll, idNewProduct, data, closeModal) => {
     form.addEventListener('submit', e => {
       e.preventDefault();
 
@@ -18,6 +18,6 @@ export const formControl =
       addProdactData(newProduct, data);
       form.reset();
       closeModal();
-      totalPriceTable(data, page);
+      totalPriceTable(data, totalPriceAll);
     });
   };

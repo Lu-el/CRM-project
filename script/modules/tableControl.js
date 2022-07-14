@@ -2,6 +2,7 @@ import {createRow} from './renderTable.js';
 
 const getTableElements = () => {
   const page = document.querySelector('.page');
+  const totalPriceAll = page.querySelector('.price__number');
   const tbody = document.querySelector('.table__body');
   const addProductButton = document.querySelector('.page__btn-add');
   const addGood = document.querySelector('.add-good');
@@ -11,6 +12,7 @@ const getTableElements = () => {
 
   return {
     page,
+    totalPriceAll,
     tbody,
     addProductButton,
     addGood,
@@ -24,8 +26,7 @@ const addProdactData = (newProduct, data) => {
   data.push(newProduct);
 };
 
-const totalPriceTable = (data, page) => {
-  const totalPriceAll = page.querySelector('.price__number');
+const totalPriceTable = (data, totalPriceAll) => {
   let total = 0;
   for (const name of data) {
     total += name.price * name.count;
@@ -33,7 +34,7 @@ const totalPriceTable = (data, page) => {
   totalPriceAll.innerHTML = `$&nbsp;${total}`;
 };
 
-const deleteRow = (page, tbody, data) => {
+const deleteRow = (totalPriceAll, tbody, data) => {
   tbody.addEventListener('click', e => {
     const target = e.target;
     if (target.closest('.table__btn_delete')) {
@@ -43,8 +44,8 @@ const deleteRow = (page, tbody, data) => {
         if (+elem.id === +row.dataset.id) {
           row.remove();
           data.splice(index, 1);
-          totalPriceTable(data, page);
         }
+        totalPriceTable(data, totalPriceAll);
       });
       console.log(data);
     }
