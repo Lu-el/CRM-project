@@ -5,7 +5,7 @@ import {formControl} from './modules/formWork.js';
 const {
   getTableElements,
   totalPriceTable,
-  deleteRow,
+  tbodyControl,
 } = tableControl;
 const {modalControl, changeTotalCost} = controlModal;
 
@@ -100,8 +100,10 @@ const init = (data) => {
   // eslint-disable-next-line max-len
   formControl(addProdactForm, tbody, totalPriceAll, idNewProduct, data, closeModal);
   modalControl(addGood, addProductButton);
-  deleteRow(totalPriceAll, tbody, data);
+  tbodyControl(totalPriceAll, tbody, data);
   changeTotalCost(addProdactForm, totalCost);
 };
 
 init(data);
+
+// console.log(screen);
