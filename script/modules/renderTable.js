@@ -25,11 +25,11 @@ export const createRow = product =>
     $${product.price * product.count}
   </td>
   <td class='table__cell table__cell_position_right'>
-  ${product.images?.big || product.images?.small ?
-      `<button class='table__btn table__btn_img'
-        aria-label='Есть изображение'></button>` :
+  ${product.image === 'image/notimage.jpg' || !(product.image) ?
       `<button class='table__btn table__btn_img_absent'
-        aria-label='Нет изображения'></button>`
+      aria-label='Нет изображения'></button>` :
+      `<button class='table__btn table__btn_img'
+      // aria-label='Есть изображение'></button>`
 }
     <button class='table__btn table__btn_change'
         aria-label='Изменить карточку товара'></button>
@@ -42,5 +42,3 @@ export const renderGoods = (arr) => {
   const goodsList = arr.map(elem => createRow(elem));
   return goodsList.join('');
 };
-
-

@@ -2,7 +2,7 @@ import {createRow} from './renderTable.js';
 
 const getTableElements = () => {
   const page = document.querySelector('.page');
-  const totalPriceAll = page.querySelector('.price__number');
+  const totalPriceAll = page.querySelector('.price__number_summ');
   const tbody = document.querySelector('.table__body');
   const addProductButton = document.querySelector('.page__btn-add');
   const addGood = document.querySelector('.add-good');
@@ -22,16 +22,27 @@ const getTableElements = () => {
   };
 };
 
-const addProdactData = (newProduct, data) => {
-  data.push(newProduct);
-};
+// const addProdactData = (newProduct, data) => {
+//   data.push(newProduct);
+// };
 
-const totalPriceTable = (data, totalPriceAll) => {
+const totalPriceData = (data) => {
   let total = 0;
   for (const name of data) {
     total += name.price * name.count;
   }
-  totalPriceAll.innerHTML = `$&nbsp;${total}`;
+  return total;
+};
+
+const totalPriceTable = (data, totalPriceAll) => {
+  const total = totalPriceData(data);
+  totalPriceAll.innerHTML = total;
+};
+
+const totalPriceChange = (newProduct, totalPriceAll) => {
+  const summ = +totalPriceAll.innerHTML;
+  console.log(summ);
+  totalPriceAll.innerHTML = summ + newProduct.price * newProduct.count;
 };
 
 const showPicture = (width, height) => {
@@ -82,8 +93,9 @@ const addProdactPage = (newProduct, tablebody) => {
 
 export default {
   getTableElements,
-  addProdactData,
+  // addProdactData,
   totalPriceTable,
   tbodyControl,
   addProdactPage,
+  totalPriceChange,
 };

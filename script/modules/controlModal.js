@@ -1,8 +1,3 @@
-const getIdNumber = () => {
-  const id = new Date().getTime();
-  return id.toString().slice(0, 9);
-};
-
 const changeId = (btnChangeId, idNewProduct) => {
   btnChangeId.addEventListener('click', (e) => {
     const id = +prompt('Введите новый id');
@@ -24,13 +19,20 @@ const modalControl = (addGood, addProductButton) => {
   const addProdactForm = addGood.querySelector('.add-good__form');
   const totalCost = addProdactForm.querySelector('.price__number');
   const btnChangeId = addGood.querySelector('.add-good__pencil');
+  const errorBlock = document.querySelector('.error');
+  const errorBtnClose = errorBlock.querySelector('.error__btn');
+  const errorMessage = document.querySelector('.add-good__error');
+
   const closeModal = () => {
     addGood.classList.remove('add-good_show');
+    errorBlock.classList.add('visually-hidden');
+    if (errorMessage) {
+      errorMessage.classList.add('visually-hidden');
+    }
   };
 
   const openModal = () => {
     addGood.classList.add('add-good_show');
-    idNewProduct.innerHTML = getIdNumber();
     changeId(btnChangeId, idNewProduct);
   };
 
@@ -58,6 +60,10 @@ const modalControl = (addGood, addProductButton) => {
       input.disabled = true;
       input.value = '';
     }
+  });
+
+  errorBtnClose.addEventListener('click', () => {
+    errorBlock.classList.add('visually-hidden');
   });
 
   return {
