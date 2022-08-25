@@ -1,8 +1,8 @@
 export const createRow = product =>
   `<tr class='table__row' data-id='${product.id}'
-    data-pic=${product.images?.big || product.images?.small ?
-      `https://i.cars.kg/preview/r/fvXdZJ4GHVycLRQGcyvh-g/1080x-/offers/6017/601785.jpg` :
-      ``}>
+    data-pic=${product.image ?
+      `https://enigmatic-chamber-47131.herokuapp.com/${product.image}` :
+      ``} data-pic-alt='${product.title}'>
   <td class='table__cell'>
     ${product.id}
   </td>

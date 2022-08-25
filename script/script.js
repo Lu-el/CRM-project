@@ -109,7 +109,7 @@ const init = (err, data) => {
   changeTotalCost(addProdactForm, totalCost);
 };
 
-httpRequest('https://enigmatic-chamber-47131.herokuapp.com/api/goods', {
+httpRequest(URL, {
   method: 'GET',
   callback: init,
 });

@@ -49,12 +49,14 @@ const showPicture = (width, height) => {
   const x = width / 2 - 300;
   const y = height / 2 - 300;
   const win = window.open('about:blank', '', `width=600px,height=600px`);
-  win.moveTo(x, y);
+  console.log(width, height, x, y);
+  win.moveBy(-x, y);
   return win;
 };
 
-const createPicture = (url) => {
+const createPicture = (url, alt) => {
   const img = document.createElement('img');
+  img.alt = alt;
   img.src = url;
   img.style.width = '100%';
   return img;
@@ -72,17 +74,17 @@ const tbodyControl = (totalPriceAll, tbody, data) => {
         }
         totalPriceTable(data, totalPriceAll);
       });
-      console.log(data);
+
       return;
     }
 
     if (target.closest('.table__btn_img')) {
       const url = row.dataset.pic;
-      console.log(url);
-      const width = screen.width;
-      const height = screen.height;
+      const alt = row.dataset.picAlt;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       const win = showPicture(width, height);
-      win.document.body.append(createPicture(url));
+      win.document.body.append(createPicture(url, alt));
     }
   });
 };
